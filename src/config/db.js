@@ -1,10 +1,12 @@
-const mongoose = require('mongoose');
-const config = require('config');
-const db = config.get('mongoURI');
+/*eslint-env node*/
+import mongoose from 'mongoose';
+import { DB_URL } from './config';
+
+mongoose.set('debug', true);
 
 const connectDB =  async () => {
   try {
-    await mongoose.connect(db, { 
+    await mongoose.connect( DB_URL, { 
       useNewUrlParser: true, 
       useFindAndModify: false,
       useCreateIndex: true 
@@ -17,4 +19,4 @@ const connectDB =  async () => {
   }
 }
 
-module.exports = connectDB;
+export default connectDB;
